@@ -43,7 +43,7 @@ npm install -g @angular/cli
 1. **Clone the repository**
 
 ```bash
-git clone https://github.com/your-username/angular-rbac.git
+git clone https://github.com/sagarmhrjn/acl-demo.git
 cd angular-rbac
 ```
 
