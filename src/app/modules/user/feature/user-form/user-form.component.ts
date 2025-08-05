@@ -16,8 +16,8 @@ import { NzModalRef } from 'ng-zorro-antd/modal';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzSwitchModule } from 'ng-zorro-antd/switch';
 import { Observable, map, of, take } from 'rxjs';
-import { Role } from '../../role/data-access/models';
-import { User } from '../data-access/models/user.model';
+import { Role } from '../../../role/data-access/models';
+import { User } from '../../data-access/models/user.model';
 
 @Component({
   selector: 'app-user-form',
@@ -101,7 +101,7 @@ export class UserFormComponent implements OnInit {
    */
   uniqueUsernameValidator(
     users$: Observable<User[]>,
-    currentUserId?: string,
+    currentUserId?: string
   ): AsyncValidatorFn {
     return (control: AbstractControl): Observable<ValidationErrors | null> => {
       const username = control.value?.trim().toLowerCase();
@@ -112,10 +112,10 @@ export class UserFormComponent implements OnInit {
         map((users) => {
           const duplicate = users.some(
             (u) =>
-              u.username.toLowerCase() === username && u.id !== currentUserId,
+              u.username.toLowerCase() === username && u.id !== currentUserId
           );
           return duplicate ? { nonUnique: true } : null;
-        }),
+        })
       );
     };
   }

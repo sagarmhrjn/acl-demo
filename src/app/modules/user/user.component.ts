@@ -14,7 +14,7 @@ import {
   UpdateUserAction,
   UserStateSelector,
 } from './data-access/store';
-import { UserFormComponent } from './user-form/user-form.component';
+import { UserFormComponent } from './feature/user-form/user-form.component';
 
 /**
  * Displays and manages the list of users.
@@ -27,11 +27,11 @@ import { UserFormComponent } from './user-form/user-form.component';
 })
 export class UserComponent implements OnInit {
   userList$: Observable<User[]> = inject(Store).select(
-    UserStateSelector.SliceOf('userList'),
+    UserStateSelector.SliceOf('userList')
   );
 
   roleList$: Observable<Role[]> = inject(Store).select(
-    RoleStateSelector.SliceOf('roleList'),
+    RoleStateSelector.SliceOf('roleList')
   );
 
   private _store = inject(Store);
@@ -85,10 +85,10 @@ export class UserComponent implements OnInit {
 
     // Read roles and permissions from store snapshots
     const roles = this._store.selectSnapshot<Role[]>(
-      RoleStateSelector.SliceOf('roleList'),
+      RoleStateSelector.SliceOf('roleList')
     );
     const permissions = this._store.selectSnapshot<Permission[]>(
-      PermissionStateSelector.SliceOf('permissionList'),
+      PermissionStateSelector.SliceOf('permissionList')
     );
 
     if (!user || !roles || !permissions) return false;
@@ -117,7 +117,7 @@ export class UserComponent implements OnInit {
     }
 
     const roles = this._store.selectSnapshot<Role[]>(
-      RoleStateSelector.SliceOf('roleList'),
+      RoleStateSelector.SliceOf('roleList')
     );
     if (!user || !roles) return false;
 
