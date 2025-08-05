@@ -21,7 +21,7 @@
         <th>Username</th>
         <th>Role</th>
         <th>Status</th>
-        <th>Action</th>
+        <th *ngIf="!hasRole('Viewer')">Action</th>
       </tr>
     </thead>
     <tbody>

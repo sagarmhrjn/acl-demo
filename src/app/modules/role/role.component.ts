@@ -25,21 +25,42 @@ import { RoleFormComponent } from './feature/role-form/role-form.component';
   standalone: false,
 })
 export class RoleComponent {
+  /**
+   * Observable list of all roles.
+   */
   roleList$: Observable<Role[]> = inject(Store).select(
-    RoleStateSelector.SliceOf('roleList'),
+    RoleStateSelector.SliceOf('roleList')
   );
 
+  /**
+   * Observable list of all permissions.
+   */
   permissionList$: Observable<Permission[]> = inject(Store).select(
-    PermissionStateSelector.SliceOf('permissionList'),
+    PermissionStateSelector.SliceOf('permissionList')
   );
 
+  /**
+   * Injected NGXS store.
+   */
   private _store = inject(Store);
+
+  /**
+   * Injected Ant Design modal service.
+   */
   private _modal = inject(NzModalService);
 
+  /**
+   * Initializes the component by fetching all roles.
+   */
   ngOnInit(): void {
     this._store.dispatch(new GetAllRoleAction());
   }
 
+  /**
+   * Opens a modal to create or edit a role.
+   *
+   * @param role Optional role object. If provided, edit mode is enabled.
+   */
   openCreateOrEditRoleModal(role: any = null): void {
     const modalRef = this._modal.create({
       nzTitle: role ? 'Edit Role' : 'Create Role',
@@ -60,7 +81,7 @@ export class RoleComponent {
               name: result.name,
               description: result.description,
               permissionIds: result.permissionIds,
-            }),
+            })
           );
         } else {
           // Create new role
@@ -70,6 +91,11 @@ export class RoleComponent {
     });
   }
 
+  /**
+   * Deletes a role after confirmation.
+   *
+   * @param role The role to delete.
+   */
   onDeleteRole(role: Role): void {
     this._modal.confirm({
       nzTitle: `Are you sure you want to delete the role "${role.name}"?`,
