@@ -1,0 +1,63 @@
+@if (roleList$ | async; as roleList) {
+  <div
+    class="table-header d-flex justify-content-between align-items-center mb-3"
+  >
+    <h3 class="mb-0">Roles</h3>
+    <button
+      nz-button
+      nzType="primary"
+      (click)="openCreateOrEditRoleModal(null)"
+    >
+      <i nz-icon nzType="plus"></i> Create Role
+    </button>
+  </div>
+  <nz-table #basicTable [nzData]="roleList">
+    <thead>
+      <tr>
+        <th>S.N</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Permissions</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (data of basicTable.data; track data.id; let i = $index) {
+        <tr>
+          <td>{{ i + 1 }}</td>
+          <td>{{ data.name }}</td>
+          <td>{{ data.description }}</td>
+          <div class="tag-container">
+            <nz-tag
+              *ngFor="let perm of data.permissionNames"
+              [nzMode]="'default'"
+              [nzColor]="'blue'"
+              class="me-1 mb-1"
+            >
+              {{ perm }}
+            </nz-tag>
+          </div>
+          <td>
+            <button
+              nz-button
+              nzType="text"
+              nz-tooltip="Edit"
+              (click)="openCreateOrEditRoleModal(data)"
+            >
+              <i nz-icon nzType="edit"></i>
+            </button>
+            <button
+              nz-button
+              nzType="text"
+              nz-tooltip="Delete"
+              (click)="onDeleteRole(data)"
+              style="color: red"
+            >
+              <i nz-icon nzType="delete"></i>
+            </button>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </nz-table>
+}

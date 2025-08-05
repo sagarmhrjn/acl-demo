@@ -1,0 +1,60 @@
+<nz-layout class="app-layout">
+  <nz-sider
+    class="menu-sidebar"
+    nzCollapsible
+    nzWidth="256px"
+    nzBreakpoint="md"
+    [(nzCollapsed)]="isCollapsed"
+    [nzTrigger]="null"
+  >
+    <div class="sidebar-logo">
+      <a href="https://ng.ant.design/" target="_blank">
+        <h1>ACL</h1>
+      </a>
+    </div>
+    <ul
+      nz-menu
+      nzTheme="dark"
+      nzMode="inline"
+      [nzInlineCollapsed]="isCollapsed"
+    >
+      <ul>
+        <li nz-menu-item nzMatchRouter>
+          <a routerLink="/users">Users</a>
+        </li>
+        @if (isSuperAdmin) {
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/roles">Roles</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/permissions">Permissions</a>
+          </li>
+        }
+      </ul>
+    </ul>
+  </nz-sider>
+  <nz-layout>
+    <nz-header>
+      <div class="app-header">
+        <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
+          <nz-icon
+            class="trigger"
+            [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+          />
+        </span>
+
+        <ul nz-menu class="logout-menu" nzMode="horizontal">
+          <li nz-menu-item (click)="logout()">
+            <span nz-icon nzType="logout"></span>
+            <span>Logout</span>
+          </li>
+        </ul>
+      </div>
+    </nz-header>
+    <nz-content>
+      <div class="inner-content">
+        <router-outlet></router-outlet>
+      </div>
+    </nz-content>
+  </nz-layout>
+</nz-layout>

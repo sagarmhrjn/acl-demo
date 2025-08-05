@@ -1,0 +1,136 @@
+<form
+  [formGroup]="userForm"
+  (ngSubmit)="submit()"
+  nzLayout="vertical"
+  class="p-2"
+>
+  <nz-form-item>
+    <nz-form-label [nzFor]="'firstName'" [nzSpan]="6" nzRequired
+      >First Name</nz-form-label
+    >
+    <nz-form-control [nzErrorTip]="'First name is required'" [nzSpan]="16">
+      <input
+        nz-input
+        formControlName="firstName"
+        id="firstName"
+        placeholder="Enter first name"
+      />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzFor]="'lastName'" [nzSpan]="6" nzRequired
+      >Last Name</nz-form-label
+    >
+    <nz-form-control [nzErrorTip]="'Last name is required'" [nzSpan]="16">
+      <input
+        nz-input
+        formControlName="lastName"
+        id="lastName"
+        placeholder="Enter last name"
+      />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzFor]="'email'" [nzSpan]="6" nzRequired
+      >Email</nz-form-label
+    >
+    <nz-form-control [nzErrorTip]="'A valid email is required'" [nzSpan]="16">
+      <input
+        nz-input
+        formControlName="email"
+        id="email"
+        placeholder="Enter email"
+      />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item *ngIf="!userData">
+    <nz-form-label [nzFor]="'username'" [nzSpan]="6" nzRequired
+      >Username</nz-form-label
+    >
+    <nz-form-control
+      [nzSpan]="16"
+      [nzValidateStatus]="userForm.controls['username']"
+      [nzErrorTip]="
+        userForm.controls['username'].hasError('required')
+          ? 'User name is required'
+          : userForm.controls['username'].hasError('nonUnique')
+            ? 'User name must be unique'
+            : ''
+      "
+    >
+      <input
+        nz-input
+        id="username"
+        formControlName="username"
+        placeholder="Enter username"
+      />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item *ngIf="!userData">
+    <nz-form-label [nzFor]="'password'" [nzSpan]="6" nzRequired
+      >Password</nz-form-label
+    >
+    <nz-form-control [nzErrorTip]="'Password is required'" [nzSpan]="16">
+      <input
+        nz-input
+        type="password"
+        id="password"
+        formControlName="password"
+        placeholder="Enter password"
+      />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzFor]="'roleId'" [nzSpan]="6" nzRequired
+      >Role</nz-form-label
+    >
+    <nz-form-control [nzErrorTip]="'Role is required'" [nzSpan]="10">
+      <nz-select
+        formControlName="roleId"
+        id="roleId"
+        nzPlaceHolder="Select a role"
+        nzShowSearch
+      >
+        @if (allRoles$ | async; as allRoles) {
+          <nz-option
+            *ngFor="let role of allRoles"
+            [nzValue]="role.id"
+            [nzLabel]="role.name"
+          ></nz-option>
+        }
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="6">Active</nz-form-label>
+    <nz-form-control [nzSpan]="10">
+      <nz-switch formControlName="isActive"></nz-switch>
+    </nz-form-control>
+  </nz-form-item>
+
+  <div class="modal-footer" style="text-align: right; margin-top: 24px">
+    <button
+      nz-button
+      (click)="cancel()"
+      type="button"
+      style="margin-right: 8px"
+    >
+      Cancel
+    </button>
+    <button
+      nz-button
+      nzType="primary"
+      [disabled]="userForm.invalid"
+      [nzLoading]="false"
+      type="submit"
+    >
+      Save
+    </button>
+  </div>
+</form>

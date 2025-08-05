@@ -1,0 +1,61 @@
+@if (userList$ | async; as userList) {
+  <div
+    class="table-header d-flex justify-content-between align-items-center mb-3"
+  >
+    <h3 class="mb-0">Users</h3>
+    <button
+      nz-button
+      nzType="primary"
+      *ngIf="hasRole('Super Admin')"
+      (click)="openCreateOrEditUserModal(null)"
+    >
+      <i nz-icon nzType="plus"></i> Create User
+    </button>
+  </div>
+  <nz-table #basicTable [nzData]="userList">
+    <thead>
+      <tr>
+        <th>S.N</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Username</th>
+        <th>Role</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (data of basicTable.data; track data.id; let i = $index) {
+        <tr>
+          <td>{{ i + 1 }}</td>
+          <td>{{ data.firstName }} {{ data.lastName }}</td>
+          <td>{{ data.email }}</td>
+          <td>{{ data.username }}</td>
+          <td>{{ data.roleName }}</td>
+          <td>{{ data.isActive ? "Active" : "Inactive" }}</td>
+          <td>
+            <button
+              *ngIf="hasPermission('edit_user') && !data.isSuperAdmin"
+              nz-button
+              nzType="text"
+              nz-tooltip="Edit"
+              (click)="openCreateOrEditUserModal(data)"
+            >
+              <i nz-icon nzType="edit"></i>
+            </button>
+            <button
+              *ngIf="hasPermission('delete_user') && !data.isSuperAdmin"
+              nz-button
+              nzType="text"
+              nz-tooltip="Delete"
+              (click)="onDeleteUser(data)"
+              style="color: red"
+            >
+              <i nz-icon nzType="delete"></i>
+            </button>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </nz-table>
+}

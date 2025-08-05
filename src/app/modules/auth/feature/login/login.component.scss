@@ -1,0 +1,27 @@
+.login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
+
+  .login-box {
+    background: white;
+    padding: 2rem;
+    width: 100%;
+    max-width: 400px;
+    border-radius: 1rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+
+    .google-btn {
+      background-color: #f5f5f5;
+      border: 1px solid #ccc;
+    }
+
+    .forgot-link,
+    .sign-up-link {
+      color: #1890ff;
+      cursor: pointer;
+    }
+  }
+}

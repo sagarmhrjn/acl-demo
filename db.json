@@ -1,0 +1,92 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "firstName": "Sagar",
+      "lastName": "Maharjan",
+      "username": "sagarmhrjn31",
+      "email": "sagarmaharjan31@gmail.com",
+      "password": "password123",
+      "roleId": "1",
+      "isActive": true,
+      "isSuperAdmin": true
+    },
+    {
+      "id": "2",
+      "firstName": "John",
+      "lastName": "Smith",
+      "username": "johnsmith@31",
+      "email": "john.smith@example.com",
+      "password": "password123",
+      "roleId": "2",
+      "isActive": true,
+      "isSuperAdmin": false
+    },
+    {
+      "id": "b474",
+      "firstName": "Jane",
+      "lastName": "Doe",
+      "email": "jane.doe@example.com",
+      "username": "jane@31",
+      "password": "password123",
+      "roleId": "f8d0",
+      "isActive": false
+    }
+  ],
+  "roles": [
+    {
+      "name": "Super Admin",
+      "description": "Has full access to all features",
+      "permissionIds": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "id": "1"
+    },
+    {
+      "name": "Editor",
+      "description": "Can edit content",
+      "permissionIds": [
+        "3",
+        "4"
+      ],
+      "id": "2"
+    },
+    {
+      "id": "f8d0",
+      "name": "Viewer",
+      "description": "Can view the content",
+      "permissionIds": [
+        "1"
+      ]
+    }
+  ],
+  "permissions": [
+    {
+      "id": "1",
+      "name": "View Users",
+      "description": "Can view all users",
+      "key": "view_users"
+    },
+    {
+      "id": "2",
+      "name": "Create User",
+      "description": "Can create new user",
+      "key": "create_user"
+    },
+    {
+      "id": "3",
+      "name": "Edit User",
+      "description": "Can edit existing user",
+      "key": "edit_user"
+    },
+    {
+      "id": "4",
+      "name": "Delete User",
+      "description": "Can delete a user",
+      "key": "delete_user"
+    }
+  ]
+}

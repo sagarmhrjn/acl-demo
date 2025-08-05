@@ -1,0 +1,14 @@
+.tag-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center; // vertically center
+  height: 100%;
+  min-height: 40px; // optional: ensures enough height
+  gap: 6px; // space between tags
+}
+
+.table-header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 16px;
+}

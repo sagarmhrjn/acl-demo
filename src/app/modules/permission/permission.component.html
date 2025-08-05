@@ -1,0 +1,27 @@
+@if (permissionList$ | async; as permissionList) {
+  <div
+    class="table-header d-flex justify-content-between align-items-center mb-3"
+  >
+    <h3 class="mb-0">Permissions</h3>
+  </div>
+  <nz-table #basicTable [nzData]="permissionList">
+    <thead>
+      <tr>
+        <th>S.N</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Key</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (data of basicTable.data; track data.id; let i = $index) {
+        <tr>
+          <td>{{ i + 1 }}</td>
+          <td>{{ data.name }}</td>
+          <td>{{ data.description }}</td>
+          <td>{{ data.key }}</td>
+        </tr>
+      }
+    </tbody>
+  </nz-table>
+}

@@ -1,59 +1,129 @@
-# UserManagement
+# 🔐 Angular Role & Permission Based Access Control System
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.15.
+This Angular project implements a **Role-Based Access Control (RBAC)** system using:
+- **NGXS** for state management
+- **Ng Zorro Ant Design** for UI components
+- **JSON Server** as a mock backend
+- **Compodoc** for automatic documentation
 
-## Development server
+---
 
-To start a local development server, run:
+## 📦 Tech Stack
+
+| Tool             | Purpose                    |
+|------------------|----------------------------|
+| Angular          | Frontend framework         |
+| NGXS             | State management           |
+| Ng Zorro Antd    | UI components              |
+| JSON Server      | Mock API (REST simulation) |
+| Compodoc         | Documentation generator    |
+| ESLint + Prettier| Code quality & formatting  |
+| Husky            | Git hooks (optional)       |
+
+---
+
+## 🚀 Getting Started
+
+### ✅ Prerequisites
+
+Make sure you have installed the following tools:
+
+- [Node.js](https://nodejs.org/) (v20.10)
+- npm (comes with Node.js)
+- Angular CLI (v19+)
+
+```bash
+npm install -g @angular/cli
+```
+
+---
+
+## 🛠️ Setup Instructions
+
+1. **Clone the repository**
+
+```bash
+git clone https://github.com/your-username/angular-rbac.git
+cd angular-rbac
+```
+
+2. **Install dependencies**
+
+```bash
+npm run clean:install
+```
+
+3. **Start the mock backend (JSON Server)**
+
+```bash
+npm run json-server
+```
+
+This will start the mock API server at:  
+`http://localhost:3000`
+
+4. **Start the Angular development server**
+
+In a new terminal, run:
 
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Or use the npm script:
 
 ```bash
-ng generate component component-name
+npm start
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Open your browser at:  
+`http://localhost:4200`
 
-```bash
-ng generate --help
-```
+---
 
-## Building
+## 🧰 Available Commands
 
-To build the project run:
+| Command                          | Description                                      |
+|---------------------------------|------------------------------------------------|
+| `npm run clean`                 | Remove `node_modules`, `dist`, and `coverage`  |
+| `npm run clean:dist`            | Remove `dist` folder only                        |
+| `npm run clean:install`         | Clean and reinstall dependencies                 |
+| `npm run lint`                  | Run ESLint and auto-fix issues                   |
+| `npm run format`                | Format codebase with Prettier                     |
+| `npm run compodoc:build`        | Generate Compodoc documentation                   |
+| `npm run compodoc:serve`        | Serve existing Compodoc docs locally              |
+| `npm run compodoc:build-and-serve` | Build and serve docs with Compodoc             |
+| `npm run json-server`           | Start JSON Server mock backend on port 3000      |
+| `npm start`                    | Alias for `ng serve` to start Angular dev server |
 
-```bash
-ng build
-```
+---
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## 🔐 Features
 
-## Running unit tests
+- Role-based route guards (`AuthGuard`, `SuperAdminGuard`, `LoggedInGuard`)
+- Permission-based UI element rendering
+- User and role management with NGXS state management
+- Reusable modal forms with validation
+- Simulated backend with JSON-server
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+---
 
-```bash
-ng test
-```
+## 🗃️ Mock API (`json-server`)
 
-## Running end-to-end tests
+- Data stored in `db.json`
+- Endpoints:
 
-For end-to-end (e2e) testing, run:
+  - `http://localhost:3000/users`
+  - `http://localhost:3000/roles`
+  - `http://localhost:3000/permissions`
 
-```bash
-ng e2e
-```
+- Supports full CRUD: GET, POST, PUT, DELETE
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+---
 
-## Additional Resources
+## 🙌 Contributions
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Contributions, issues, and feature requests are welcome!  
+Feel free to fork and submit pull requests.
+
+---
